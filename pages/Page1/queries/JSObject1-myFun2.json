@@ -24,7 +24,7 @@
       "jsArguments": [],
       "isAsync": true
     },
-    "executeOnLoad": false,
+    "executeOnLoad": true,
     "clientSideExecution": true,
     "dynamicBindingPathList": [
       {
@@ -37,7 +37,7 @@
     "jsonPathKeys": [
       "async () => {}"
     ],
-    "userSetOnLoad": false,
+    "userSetOnLoad": true,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
