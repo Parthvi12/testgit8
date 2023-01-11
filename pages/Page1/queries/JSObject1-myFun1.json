@@ -19,7 +19,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "() => {\n  return \"test\";\n}",
+      "body": "() => {\n  return \"testing\";\n}",
       "selfReferencingDataPaths": [],
       "jsArguments": [],
       "isAsync": false
@@ -34,7 +34,7 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "() => {\n  return \"test\";\n}"
+      "() => {\n  return \"testing\";\n}"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
