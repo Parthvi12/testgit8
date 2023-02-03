@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 75,
+          "version": 59,
           "minHeight": 670,
           "parentColumnSpace": 1,
           "dynamicBindingPathList": [],
@@ -62,7 +62,6 @@
               },
               "animateLoading": true,
               "parentColumnSpace": 10.515625,
-              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
               "leftColumn": 17,
               "dynamicBindingPathList": [
                 {
@@ -70,12 +69,6 @@
                 },
                 {
                   "key": "boxShadow"
-                },
-                {
-                  "key": "accentColor"
-                },
-                {
-                  "key": "fontFamily"
                 }
               ],
               "customFusionChartConfig": {
@@ -107,7 +100,6 @@
               "isDeprecated": false,
               "rightColumn": 41,
               "widgetId": "fv0g6pmx4t",
-              "accentColor": "{{appsmith.theme.colors.primaryColor}}",
               "isVisible": true,
               "version": 1,
               "parentId": "0",
@@ -123,7 +115,6 @@
           ]
         },
         "layoutOnLoadActions": [],
-        "layoutOnLoadActionErrors": [],
         "validOnPageLoadActions": true,
         "id": "Page2",
         "deleted": false,
