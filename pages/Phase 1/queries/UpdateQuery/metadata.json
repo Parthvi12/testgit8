@@ -2,7 +2,7 @@
   "pluginType": "SAAS",
   "pluginId": "google-sheets-plugin",
   "unpublishedAction": {
-    "name": "DeleteQuery",
+    "name": "UpdateQuery",
     "datasource": {
       "name": "Untitled Datasource",
       "pluginId": "google-sheets-plugin",
@@ -18,10 +18,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
+      "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
           "key": "method",
-          "value": "DELETE_ROW"
+          "value": "UPDATE"
         },
         {
           "key": "sheetUrl",
@@ -45,7 +46,7 @@
         },
         {
           "key": "rowLimit",
-          "value": "{{data_table.pageSize}}"
+          "value": ""
         },
         {
           "key": "sheetName",
@@ -53,17 +54,18 @@
         },
         {
           "key": "rowOffset",
-          "value": "{{(data_table.pageNo - 1) * data_table.pageSize}}"
+          "value": ""
         },
         {
-          "key": "rowObject"
+          "key": "rowObject",
+          "value": "{{\n\t{\n\t\t...update_form.formData, \n\t\trowIndex:data_table.selectedRow.rowIndex\n\t}\n}}"
         },
         {
           "key": "rowObjects"
         },
         {
           "key": "rowIndex",
-          "value": "{{data_table.triggeredRow.rowIndex}}"
+          "value": ""
         },
         {
           "key": "deleteFormat",
@@ -71,40 +73,29 @@
         },
         {
           "key": "smartSubstitution",
-          "value": false
+          "value": true
         }
       ],
       "formData": {
         "command": {
-          "data": "DELETE_ONE",
+          "data": "UPDATE_ONE",
           "viewType": "component",
-          "componentData": "DELETE_ONE"
+          "componentData": "UPDATE_ONE"
         },
         "entityType": {
           "data": "ROWS",
           "viewType": "component",
           "componentData": "ROWS"
         },
-        "pagination": {
-          "data": {
-            "offset": "{{(data_table.pageNo - 1) * data_table.pageSize}}",
-            "limit": "{{data_table.pageSize}}"
-          },
-          "viewType": "component",
-          "componentData": {
-            "offset": "{{(data_table.pageNo - 1) * data_table.pageSize}}",
-            "limit": "{{data_table.pageSize}}"
-          }
-        },
         "queryFormat": {
           "data": "ROWS",
           "viewType": "component",
           "componentData": "ROWS"
         },
-        "rowIndex": {
-          "data": "{{data_table.triggeredRow.rowIndex}}",
+        "rowObjects": {
+          "data": "{{\n\t{\n\t\t...update_form.formData, \n\t\trowIndex:data_table.selectedRow.rowIndex\n\t}\n}}",
           "viewType": "component",
-          "componentData": "{{data_table.triggeredRow.rowIndex}}"
+          "componentData": "{{\n\t{\n\t\t...update_form.formData, \n\t\trowIndex:data_table.selectedRow.rowIndex\n\t}\n}}"
         },
         "sheetName": {
           "data": "Phase 1",
@@ -117,9 +108,9 @@
           "componentData": "https://docs.google.com/spreadsheets/d/1P6or_F8UZ9sJX3JRAsX_kQDMRRnXqrnRgRIiml8Gjl0/edit"
         },
         "smartSubstitution": {
-          "data": false,
+          "data": true,
           "viewType": "component",
-          "componentData": false
+          "componentData": true
         },
         "tableHeaderIndex": {
           "data": "1",
@@ -133,16 +124,14 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "(data_table.pageNo - 1) * data_table.pageSize",
-      "data_table.pageSize",
-      "data_table.triggeredRow.rowIndex"
+      "{\n\t\t...update_form.formData, \n\t\trowIndex:data_table.selectedRow.rowIndex\n\t}"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Phase 1_DeleteQuery",
+  "id": "Phase 1_UpdateQuery",
   "deleted": false,
-  "gitSyncId": "62bdce08b28c5a177c90b7e3_62c2a8552cbf816c7474e53a"
+  "gitSyncId": "62bdce08b28c5a177c90b7e3_62c2a8552cbf816c7474e53b"
 }

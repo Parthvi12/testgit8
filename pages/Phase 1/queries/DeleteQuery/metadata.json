@@ -2,7 +2,7 @@
   "pluginType": "SAAS",
   "pluginId": "google-sheets-plugin",
   "unpublishedAction": {
-    "name": "InsertQuery",
+    "name": "DeleteQuery",
     "datasource": {
       "name": "Untitled Datasource",
       "pluginId": "google-sheets-plugin",
@@ -18,10 +18,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
+      "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
           "key": "method",
-          "value": "APPEND"
+          "value": "DELETE_ROW"
         },
         {
           "key": "sheetUrl",
@@ -45,7 +46,7 @@
         },
         {
           "key": "rowLimit",
-          "value": ""
+          "value": "{{data_table.pageSize}}"
         },
         {
           "key": "sheetName",
@@ -53,18 +54,17 @@
         },
         {
           "key": "rowOffset",
-          "value": ""
+          "value": "{{(data_table.pageNo - 1) * data_table.pageSize}}"
         },
         {
-          "key": "rowObject",
-          "value": "{{insert_form.formData}}"
+          "key": "rowObject"
         },
         {
           "key": "rowObjects"
         },
         {
           "key": "rowIndex",
-          "value": ""
+          "value": "{{data_table.triggeredRow.rowIndex}}"
         },
         {
           "key": "deleteFormat",
@@ -72,29 +72,40 @@
         },
         {
           "key": "smartSubstitution",
-          "value": true
+          "value": false
         }
       ],
       "formData": {
         "command": {
-          "data": "INSERT_ONE",
+          "data": "DELETE_ONE",
           "viewType": "component",
-          "componentData": "INSERT_ONE"
+          "componentData": "DELETE_ONE"
         },
         "entityType": {
           "data": "ROWS",
           "viewType": "component",
           "componentData": "ROWS"
         },
+        "pagination": {
+          "data": {
+            "offset": "{{(data_table.pageNo - 1) * data_table.pageSize}}",
+            "limit": "{{data_table.pageSize}}"
+          },
+          "viewType": "component",
+          "componentData": {
+            "offset": "{{(data_table.pageNo - 1) * data_table.pageSize}}",
+            "limit": "{{data_table.pageSize}}"
+          }
+        },
         "queryFormat": {
           "data": "ROWS",
           "viewType": "component",
           "componentData": "ROWS"
         },
-        "rowObjects": {
-          "data": "{{insert_form.formData}}",
+        "rowIndex": {
+          "data": "{{data_table.triggeredRow.rowIndex}}",
           "viewType": "component",
-          "componentData": "{{insert_form.formData}}"
+          "componentData": "{{data_table.triggeredRow.rowIndex}}"
         },
         "sheetName": {
           "data": "Phase 1",
@@ -107,9 +118,9 @@
           "componentData": "https://docs.google.com/spreadsheets/d/1P6or_F8UZ9sJX3JRAsX_kQDMRRnXqrnRgRIiml8Gjl0/edit"
         },
         "smartSubstitution": {
-          "data": true,
+          "data": false,
           "viewType": "component",
-          "componentData": true
+          "componentData": false
         },
         "tableHeaderIndex": {
           "data": "1",
@@ -123,14 +134,16 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "insert_form.formData"
+      "(data_table.pageNo - 1) * data_table.pageSize",
+      "data_table.pageSize",
+      "data_table.triggeredRow.rowIndex"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Phase 1_InsertQuery",
+  "id": "Phase 1_DeleteQuery",
   "deleted": false,
-  "gitSyncId": "62bdce08b28c5a177c90b7e3_62c2a8552cbf816c7474e53c"
+  "gitSyncId": "62bdce08b28c5a177c90b7e3_62c2a8552cbf816c7474e53a"
 }

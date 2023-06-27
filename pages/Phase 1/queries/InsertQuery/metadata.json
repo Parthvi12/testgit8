@@ -2,7 +2,7 @@
   "pluginType": "SAAS",
   "pluginId": "google-sheets-plugin",
   "unpublishedAction": {
-    "name": "SelectQuery",
+    "name": "InsertQuery",
     "datasource": {
       "name": "Untitled Datasource",
       "pluginId": "google-sheets-plugin",
@@ -18,10 +18,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
+      "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
           "key": "method",
-          "value": "GET"
+          "value": "APPEND"
         },
         {
           "key": "sheetUrl",
@@ -45,7 +46,7 @@
         },
         {
           "key": "rowLimit",
-          "value": "{{data_table.pageSize}}"
+          "value": ""
         },
         {
           "key": "sheetName",
@@ -53,10 +54,11 @@
         },
         {
           "key": "rowOffset",
-          "value": "{{(data_table.pageNo - 1) * data_table.pageSize}}"
+          "value": ""
         },
         {
-          "key": "rowObject"
+          "key": "rowObject",
+          "value": "{{insert_form.formData}}"
         },
         {
           "key": "rowObjects"
@@ -71,41 +73,29 @@
         },
         {
           "key": "smartSubstitution",
-          "value": false
-        },
-        {
-          "key": "where",
-          "value": [
-            {}
-          ]
+          "value": true
         }
       ],
       "formData": {
         "command": {
-          "data": "FETCH_MANY",
+          "data": "INSERT_ONE",
           "viewType": "component",
-          "componentData": "FETCH_MANY"
+          "componentData": "INSERT_ONE"
         },
         "entityType": {
           "data": "ROWS",
           "viewType": "component",
           "componentData": "ROWS"
         },
-        "pagination": {
-          "data": {
-            "offset": "{{(data_table.pageNo - 1) * data_table.pageSize}}",
-            "limit": "{{data_table.pageSize}}"
-          },
-          "viewType": "component",
-          "componentData": {
-            "offset": "{{(data_table.pageNo - 1) * data_table.pageSize}}",
-            "limit": "{{data_table.pageSize}}"
-          }
-        },
         "queryFormat": {
           "data": "ROWS",
           "viewType": "component",
           "componentData": "ROWS"
+        },
+        "rowObjects": {
+          "data": "{{insert_form.formData}}",
+          "viewType": "component",
+          "componentData": "{{insert_form.formData}}"
         },
         "sheetName": {
           "data": "Phase 1",
@@ -118,46 +108,30 @@
           "componentData": "https://docs.google.com/spreadsheets/d/1P6or_F8UZ9sJX3JRAsX_kQDMRRnXqrnRgRIiml8Gjl0/edit"
         },
         "smartSubstitution": {
-          "data": false,
+          "data": true,
           "viewType": "component",
-          "componentData": false
+          "componentData": true
         },
         "tableHeaderIndex": {
           "data": "1",
           "viewType": "component",
           "componentData": "1"
-        },
-        "where": {
-          "data": {
-            "condition": "AND",
-            "children": [
-              {}
-            ]
-          },
-          "viewType": "component",
-          "componentData": {
-            "condition": "AND",
-            "children": [
-              {}
-            ]
-          }
         }
       }
     },
-    "executeOnLoad": true,
+    "executeOnLoad": false,
     "isValid": true,
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "(data_table.pageNo - 1) * data_table.pageSize",
-      "data_table.pageSize"
+      "insert_form.formData"
     ],
-    "userSetOnLoad": true,
+    "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Phase 1_SelectQuery",
+  "id": "Phase 1_InsertQuery",
   "deleted": false,
-  "gitSyncId": "62bdce08b28c5a177c90b7e3_62c2a8552cbf816c7474e539"
+  "gitSyncId": "62bdce08b28c5a177c90b7e3_62c2a8552cbf816c7474e53c"
 }

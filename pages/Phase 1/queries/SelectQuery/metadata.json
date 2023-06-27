@@ -2,7 +2,7 @@
   "pluginType": "SAAS",
   "pluginId": "google-sheets-plugin",
   "unpublishedAction": {
-    "name": "UpdateQuery",
+    "name": "SelectQuery",
     "datasource": {
       "name": "Untitled Datasource",
       "pluginId": "google-sheets-plugin",
@@ -18,10 +18,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
+      "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
           "key": "method",
-          "value": "UPDATE"
+          "value": "GET"
         },
         {
           "key": "sheetUrl",
@@ -45,7 +46,7 @@
         },
         {
           "key": "rowLimit",
-          "value": ""
+          "value": "{{data_table.pageSize}}"
         },
         {
           "key": "sheetName",
@@ -53,11 +54,10 @@
         },
         {
           "key": "rowOffset",
-          "value": ""
+          "value": "{{(data_table.pageNo - 1) * data_table.pageSize}}"
         },
         {
-          "key": "rowObject",
-          "value": "{{\n\t{\n\t\t...update_form.formData, \n\t\trowIndex:data_table.selectedRow.rowIndex\n\t}\n}}"
+          "key": "rowObject"
         },
         {
           "key": "rowObjects"
@@ -72,29 +72,41 @@
         },
         {
           "key": "smartSubstitution",
-          "value": true
+          "value": false
+        },
+        {
+          "key": "where",
+          "value": [
+            {}
+          ]
         }
       ],
       "formData": {
         "command": {
-          "data": "UPDATE_ONE",
+          "data": "FETCH_MANY",
           "viewType": "component",
-          "componentData": "UPDATE_ONE"
+          "componentData": "FETCH_MANY"
         },
         "entityType": {
           "data": "ROWS",
           "viewType": "component",
           "componentData": "ROWS"
         },
+        "pagination": {
+          "data": {
+            "offset": "{{(data_table.pageNo - 1) * data_table.pageSize}}",
+            "limit": "{{data_table.pageSize}}"
+          },
+          "viewType": "component",
+          "componentData": {
+            "offset": "{{(data_table.pageNo - 1) * data_table.pageSize}}",
+            "limit": "{{data_table.pageSize}}"
+          }
+        },
         "queryFormat": {
           "data": "ROWS",
           "viewType": "component",
           "componentData": "ROWS"
-        },
-        "rowObjects": {
-          "data": "{{\n\t{\n\t\t...update_form.formData, \n\t\trowIndex:data_table.selectedRow.rowIndex\n\t}\n}}",
-          "viewType": "component",
-          "componentData": "{{\n\t{\n\t\t...update_form.formData, \n\t\trowIndex:data_table.selectedRow.rowIndex\n\t}\n}}"
         },
         "sheetName": {
           "data": "Phase 1",
@@ -107,30 +119,46 @@
           "componentData": "https://docs.google.com/spreadsheets/d/1P6or_F8UZ9sJX3JRAsX_kQDMRRnXqrnRgRIiml8Gjl0/edit"
         },
         "smartSubstitution": {
-          "data": true,
+          "data": false,
           "viewType": "component",
-          "componentData": true
+          "componentData": false
         },
         "tableHeaderIndex": {
           "data": "1",
           "viewType": "component",
           "componentData": "1"
+        },
+        "where": {
+          "data": {
+            "condition": "AND",
+            "children": [
+              {}
+            ]
+          },
+          "viewType": "component",
+          "componentData": {
+            "condition": "AND",
+            "children": [
+              {}
+            ]
+          }
         }
       }
     },
-    "executeOnLoad": false,
+    "executeOnLoad": true,
     "isValid": true,
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "{\n\t\t...update_form.formData, \n\t\trowIndex:data_table.selectedRow.rowIndex\n\t}"
+      "(data_table.pageNo - 1) * data_table.pageSize",
+      "data_table.pageSize"
     ],
-    "userSetOnLoad": false,
+    "userSetOnLoad": true,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Phase 1_UpdateQuery",
+  "id": "Phase 1_SelectQuery",
   "deleted": false,
-  "gitSyncId": "62bdce08b28c5a177c90b7e3_62c2a8552cbf816c7474e53b"
+  "gitSyncId": "62bdce08b28c5a177c90b7e3_62c2a8552cbf816c7474e539"
 }
